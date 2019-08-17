@@ -1,0 +1,25 @@
+Parameters:
+  KeyName:
+    Description: 'Par de chaves'
+    Type: 'AWS::EC2::KeyPair::KeyName'
+  ImageId:
+    Description: 'Image id'
+    Type: String
+Resources:
+  InstanciaApache:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref ImageId
+      InstanceType: t2.micro
+      KeyName: !Ref KeyName
+      SecurityGroups:
+        - !Ref GrupoDeSeguranca
+  GrupoDeSeguranca:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: 'Habilitando SSH port 22'
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: 0.0.0.0/0      

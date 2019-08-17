@@ -1,0 +1,21 @@
+Resources:
+  ElasticLoadBalancer:
+    Type: AWS::ElasticLoadBalancing::LoadBalancer
+    Properties:
+      AvailbilityZones: !GetAzs ''
+      Instances:
+        - i-00988383h3h9333gf98
+      Listeners:
+        - LoadBalancerPort: '80'
+        - InstancePort: '8080'
+        - Protocol: HTTP
+      HealthCheck:
+        Target: !JOIN
+          - ''
+          - HTTP:
+          - 8080
+          - /
+      HealthyThreshold: '3'
+      UnhealthyThreshold: '5'
+      Interval: '30'
+      Timeout: '5'        

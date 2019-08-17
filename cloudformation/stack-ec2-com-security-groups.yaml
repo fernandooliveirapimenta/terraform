@@ -1,0 +1,18 @@
+Resources:
+  StackApp:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: 'ami-0d8f6eb4f641ef691'
+      InstanceType: t2.micro
+      KeyName: fernandopimenta
+      SecurityGroups:
+        - !Ref InstanceSecurityGroup
+  InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: 'Habilitando SSH port 22'
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+          CidrIp: 0.0.0.0/0

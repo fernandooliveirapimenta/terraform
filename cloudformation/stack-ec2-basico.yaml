@@ -1,0 +1,7 @@
+Resources:
+  HelloFormation:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: 'ami-0d8f6eb4f641ef691'
+      InstanceType: t2.micro
+      KeyName: fernandopimenta

@@ -1,0 +1,20 @@
+Parameters:
+  KeyName:
+    Description: 'Key Name'
+    Type: String
+Mappings:
+  RegionMap:
+    us-east-1:
+      AMI: 'ami-a4dc46db'
+    us-east-2:
+      AMI: ami-6a003c0f
+Resources:
+  HelloFormation:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !FindInMap
+        - RegionMap
+        - !Ref 'AWS::Region'
+        - AMI
+      InstanceType: t2.micro
+      KeyName: !Ref KeyName

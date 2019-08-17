@@ -1,0 +1,19 @@
+Resources:
+  Bucket:
+    Type: AWS::S3:Bucket
+  MinhaDistribuicaoCdn:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig: 
+        Origins:
+          - DomainName: !GetAtt
+              - Bucket
+              - DomainName
+            Id: mys3origin
+            S3OriginConfig: {}
+        Enabled: 'True'
+        DefaultChaceBehavior:
+          TagetOriginId: mys3origin
+          ForwardedValues:
+            QueryString: 'false'
+          ViewerProtocolPolicy: allow-all      
