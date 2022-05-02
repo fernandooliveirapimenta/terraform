@@ -31,3 +31,7 @@ https://github.com/hashicorp/terraform-provider-aws/tree/v2.20.0
 - sls deploy --stage prod
 - sls remove
 - sls remove --stage fernando
+
+
+# Npm
+- npm i aws-sdk --save-dev
